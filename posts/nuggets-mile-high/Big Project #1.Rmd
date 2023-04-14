@@ -1,0 +1,33 @@
+```{r}
+library(tidyverse)
+
+high <- read_csv("/Users/wyattsteffes/Desktop/High Text.csv")
+
+high2 <- high %>%
+  select(Team, W, L) %>%
+mutate(SeasonTotal = W +L)
+  
+ggplot() + 
+  geom_bar(data=high2, aes(x=reorder(Team, W), weight=W, fill=SeasonTotal)) + 
+  coord_flip()
+
+```
+
+```{r}
+library(tidyverse)
+
+dub <- read_csv("/Users/wyattsteffes/Desktop/dub.csv")
+head(dub)
+
+ggplot() +
+  geom_point(data=dub, aes(x=Date, y=Tm))
+```
+
+```{r}
+library(tidyverse)
+
+home <- read_csv("https://www.basketball-reference.com/teams/DEN/2023_games.html#games")
+```
+
+```{}
+```
