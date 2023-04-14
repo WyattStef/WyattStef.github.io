@@ -16,9 +16,9 @@
   {
     "objectID": "posts/nuggets-mile-high/index.html",
     "href": "posts/nuggets-mile-high/index.html",
-    "title": "Victory ata Mile High",
+    "title": "Victory At A Mile High",
     "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\n\n── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──\n✔ ggplot2 3.4.0      ✔ purrr   1.0.1 \n✔ tibble  3.1.8      ✔ dplyr   1.0.10\n✔ tidyr   1.2.1      ✔ stringr 1.5.0 \n✔ readr   2.1.3      ✔ forcats 0.5.2 \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\n\n\nCode\nhigh <- read_csv(\"/Users/wyattsteffes/Desktop/High Text.csv\")\n\n\nNew names:\nRows: 30 Columns: 31\n── Column specification\n──────────────────────────────────────────────────────── Delimiter: \",\" chr\n(2): Team, Arena dbl (26): Rk, Age, W, L, PW, PL, MOV, SOS, SRS, ORtg, DRtg,\nNRtg, Pace, FTr,... lgl (3): ...18, ...23, ...28\nℹ Use `spec()` to retrieve the full column specification for this data. ℹ\nSpecify the column types or set `show_col_types = FALSE` to quiet this message.\n• `` -> `...18`\n• `eFG%` -> `eFG%...19`\n• `TOV%` -> `TOV%...20`\n• `FT/FGA` -> `FT/FGA...22`\n• `` -> `...23`\n• `eFG%` -> `eFG%...24`\n• `TOV%` -> `TOV%...25`\n• `FT/FGA` -> `FT/FGA...27`\n• `` -> `...28`\n\n\nCode\nhigh2 <- high %>%\n  select(Team, W, L) %>%\nmutate(SeasonTotal = W +L)\n  \nggplot() + \n  geom_bar(data=high2, aes(x=reorder(Team, W), weight=W, fill=SeasonTotal)) + \n  coord_flip()"
+    "text": "This is a test\n\n\nCode\nlibrary(tidyverse)\n\nhigh <- read_csv(\"/Users/wyattsteffes/Desktop/High Text.csv\")\n\nhigh2 <- high %>%\n  select(Team, W, L) %>%\nmutate(SeasonTotal = W +L)\n  \nggplot() + \n  geom_bar(data=high2, aes(x=reorder(Team, W), weight=W, fill=SeasonTotal)) + \n  coord_flip()\n\n\n\n\n\nHere’s the second chart\n\n\nCode\ndub <- read_csv(\"/Users/wyattsteffes/Desktop/dub.csv\")\n\nggplot() +\ngeom_point(data=dub, aes(x=Date, y=Tm))"
   },
   {
     "objectID": "posts/nuggets-mile-high/Big Project #1.html",
@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "Latest Post",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 20, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 17, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nVictory at a Mile High\n\n\n\n\n\n\n\nbasketball\n\n\ndenver\n\n\nhigh\n\n\n\n\n\n\n\n\n\n\n\nApr 16, 2022\n\n\nWyatt Steffes\n\n\n\n\n\n\nNo matching items"
+    "text": "Post With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nMar 20, 2023\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nMar 17, 2023\n\n\nTristan O’Malley\n\n\n\n\n\n\n  \n\n\n\n\nVictory At A Mile High\n\n\n\n\n\n\n\nbasketball\n\n\ndenver\n\n\nhigh\n\n\n\n\n\n\n\n\n\n\n\nApr 16, 2022\n\n\nWyatt Steffes\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "nuggets-mile-high/index.html",
