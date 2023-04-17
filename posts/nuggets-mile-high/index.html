@@ -213,7 +213,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<p>This is a test</p>
+<p>With the back-to-back MVP looking to win his team’s first NBA championship, the Denver Nuggets are one of the hottest teams in the NBA right. They’re also the highest team in the league, and I’m not talking about Mary Jane. I’m talking about their elevation at 5,280 feet above sea level. This is one of the biggest marketing ploys used in Denver, but what if this actually works for the home team?</p>
+<p>The Nuggets currently have a home record of 34-7 this regular season, yet that wasn’t the best one in the league. The Memphis Grizzlies finished with a home record of 35-6 this regular season. On paper that doesn’t sound too bad. Let’s see how they compared to the rest of the league this season.</p>
+<p>The * notes that the team made the playoffs this season.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -221,31 +223,968 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>high <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/wyattsteffes/Desktop/High Text.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>high2 <span class="ot">&lt;-</span> high <span class="sc">%&gt;%</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Team, W, L) <span class="sc">%&gt;%</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">SeasonTotal =</span> W <span class="sc">+</span>L)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>high2, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(Team, W), <span class="at">weight=</span>W, <span class="at">fill=</span>SeasonTotal)) <span class="sc">+</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>den <span class="ot">&lt;-</span> high <span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Team <span class="sc">==</span> <span class="st">"Denver Nuggets"</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>high, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(Team, W), <span class="at">weight=</span>W)) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">data=</span>den, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(Team, W), <span class="at">weight=</span>W,<span class="at">color=</span><span class="st">"#0E2240"</span>)) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">"lightgrey"</span>)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Team"</span>, <span class="at">y=</span><span class="st">"Wins"</span>, <span class="at">title=</span><span class="st">"Nuggets vs. the NBA."</span>, <span class="at">caption=</span><span class="st">"Source: https://www.basketball-reference.com/leagues/NBA_2023_standings.html | By Wyatt Steffes"</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Here’s the second chart</p>
+<p>4th in the league huh? Not too bad. You would think that playing at 5,280 feet above sea level would make a major dent in these rankings. That’s still a great place to be for the upcoming playoffs. In order to see how the Nuggets got the 4th most wins in the league, we have to see the path they took to get here.</p>
+<p>The Nuggets were predicted to have one of the easiest schedules out of the entire league at the beginning of the season. This worked well in their favor and helped them secure a comfy home court advantage for the first round of the playoffs. The Nuggets had a total of 82 games this season, with 42 being at home. Let’s take a look at how many points they scored during each game this season, especially during their home games at Ball Arena.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dub <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/wyattsteffes/Desktop/dub.csv"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="at">data=</span>dub, <span class="fu">aes</span>(<span class="at">x=</span>Date, <span class="at">y=</span>Tm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>dub2 <span class="ot">&lt;-</span> dub <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...<span class="dv">6</span> <span class="sc">==</span> <span class="st">"@"</span> )</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dub2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 15
+      G Date     Start…¹ ...4  ...5  ...6  Oppon…² ...8  ...9     Tm   Opp     W
+  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1 Wed Oct… 9:00p   NA    Box … @     Utah J… L     &lt;NA&gt;    102   123     0
+2     2 Fri Oct… 10:00p  NA    Box … @     Golden… W     &lt;NA&gt;    128   123     1
+3     4 Mon Oct… 10:00p  NA    Box … @     Portla… L     &lt;NA&gt;    110   135     2
+4     7 Sun Oct… 9:30p   NA    Box … @     Los An… L     &lt;NA&gt;    110   121     4
+5     8 Thu Nov… 8:00p   NA    Box … @     Oklaho… W     &lt;NA&gt;    122   110     5
+6    10 Mon Nov… 9:30p   NA    Box … @     San An… W     &lt;NA&gt;    115   109     7
+# … with 3 more variables: L &lt;dbl&gt;, Streak &lt;chr&gt;, Notes &lt;lgl&gt;, and abbreviated
+#   variable names ¹​`Start (ET)`, ²​Opponent</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>dub, <span class="fu">aes</span>(<span class="at">x=</span>G, <span class="at">y=</span>Tm), <span class="at">colour=</span><span class="st">"#8B2131"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>dub2, <span class="fu">aes</span>(<span class="at">x=</span>G, <span class="at">y=</span>Tm), <span class="at">colour=</span><span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"Game"</span>, <span class="at">y=</span><span class="st">"Points"</span>, <span class="at">title=</span><span class="st">"Playing at home sure has its advantages"</span>, <span class="at">subtitle=</span><span class="st">"The mile high altitude may have helped the Nuggets clinch the 1st seed after all."</span>, <span class="at">caption=</span><span class="st">"Source: https://www.basketball-reference.com/teams/DEN/2023_games.html | By Wyatt Steffes"</span>)<span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Huh. There doesn’t seem to be a substantial difference between the home game and away game scoring this season. While there are a few games that stand out from the rest, there is no substantial difference between venues.</p>
+<p>There is one more factor we can look at to see if the mile high altitude really had an effect. Let’s look at one of the greatest Nuggets players of all time and one of the biggest horse racing enthusiasts ever: Nikola Jokic.</p>
+<p>Jokic is the back-to-back regular season MVP and is on track to have another record-breaking season this year. In order to see how the altitude affects him, let’s look at his most popular shooting spot. When he’s not making the most amazing passes ever, Jokic loves to shoot inside the 3-point-line. If he’s so hot in the paint, he should be putting up huge numbers outside of Ball Arena, due to training more consistently at a mile high compared to the rest of the league.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>home <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"/Users/wyattsteffes/Desktop/home rec.csv"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(home)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 30
+     Rk     G Date       Age    Tm    ...6  Opp   ...8   GS    MP       FG   FGA
+  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;tim&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     1     1 2021-10-20 26-243 DEN   @     PHO   W (+1… 1     34:43    13    22
+2     2     2 2021-10-22 26-245 DEN   &lt;NA&gt;  SAS   W (+6) 1     33:37    14    19
+3     3     3 2021-10-25 26-248 DEN   &lt;NA&gt;  CLE   L (-1… 1     34:57     9    15
+4     4     4 2021-10-26 26-249 DEN   @     UTA   L (-1… 1     15:00     8     9
+5     5     5 2021-10-29 26-252 DEN   &lt;NA&gt;  DAL   W (+3… 1     25:15     5     9
+6     6     6 2021-10-30 26-253 DEN   @     MIN   W (+2) 1     36:40    10    23
+# … with 18 more variables: `FG%` &lt;dbl&gt;, `3P` &lt;dbl&gt;, `3PA` &lt;dbl&gt;, `3P%` &lt;dbl&gt;,
+#   FT &lt;dbl&gt;, FTA &lt;dbl&gt;, `FT%` &lt;dbl&gt;, ORB &lt;dbl&gt;, DRB &lt;dbl&gt;, TRB &lt;dbl&gt;,
+#   AST &lt;dbl&gt;, STL &lt;dbl&gt;, BLK &lt;dbl&gt;, TOV &lt;dbl&gt;, PF &lt;dbl&gt;, PTS &lt;dbl&gt;,
+#   GmSc &lt;dbl&gt;, `+/-` &lt;dbl&gt;</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>home2 <span class="ot">&lt;-</span> home<span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Rk, Opp, ...<span class="dv">6</span>, FGA, FG) </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> home2 <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">FGA =</span> <span class="st">"Attempted Field Goals"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">FG =</span> <span class="st">"Field Goals Made"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">...6 =</span> <span class="st">"Location"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_header</span>(</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"How well did Jokic shoot this season?"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"The 2-time MVP may have used the mile high altitude to his teams advantage. Even against the lowest geograpical team, the New Orleans Pelicans, the Joker dominated in the paint."</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">tab_style</span>(</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"title"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">tab_style</span>(</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">align =</span> <span class="st">"left"</span>),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_title</span>(<span class="st">"subtitle"</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"**By:** Wyatt Steffes  |  **Source:** https://www.basketball-reference.com/players/j/jokicni01/gamelog/2022"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>     <span class="at">locations =</span> <span class="fu">cells_column_labels</span>(<span class="at">columns =</span> <span class="fu">everything</span>()),</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>     <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>       <span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"bottom"</span>, <span class="at">weight =</span> <span class="fu">px</span>(<span class="dv">3</span>)),</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>       <span class="fu">cell_text</span>(<span class="at">weight =</span> <span class="st">"bold"</span>, <span class="at">size=</span><span class="dv">12</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>   ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="ueygjfpxjz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#ueygjfpxjz) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#ueygjfpxjz) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#ueygjfpxjz) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#ueygjfpxjz) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#ueygjfpxjz) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#ueygjfpxjz) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#ueygjfpxjz) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#ueygjfpxjz) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#ueygjfpxjz) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#ueygjfpxjz) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#ueygjfpxjz) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#ueygjfpxjz) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#ueygjfpxjz) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#ueygjfpxjz) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#ueygjfpxjz) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#ueygjfpxjz) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#ueygjfpxjz) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#ueygjfpxjz) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#ueygjfpxjz) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_left {
+  text-align: left;
+}
+
+:where(#ueygjfpxjz) .gt_center {
+  text-align: center;
+}
+
+:where(#ueygjfpxjz) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#ueygjfpxjz) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#ueygjfpxjz) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#ueygjfpxjz) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#ueygjfpxjz) .gt_super {
+  font-size: 65%;
+}
+
+:where(#ueygjfpxjz) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#ueygjfpxjz) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#ueygjfpxjz) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#ueygjfpxjz) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#ueygjfpxjz) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#ueygjfpxjz) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#ueygjfpxjz) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="color: #000000; text-align: left; font-weight: bold;">How well did Jokic shoot this season?</td>
+    </tr>
+    <tr>
+      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="color: #000000; text-align: left;">The 2-time MVP may have used the mile high altitude to his teams advantage. Even against the lowest geograpical team, the New Orleans Pelicans, the Joker dominated in the paint.</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;" scope="col" id="Rk">Rk</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;" scope="col" id="Opp">Opp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;" scope="col" id="Location">Location</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;" scope="col" id="Attempted Field Goals">Attempted Field Goals</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold;" scope="col" id="Field Goals Made">Field Goals Made</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Rk" class="gt_row gt_right">1</td>
+<td headers="Opp" class="gt_row gt_left">PHO</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">22</td>
+<td headers="FG" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">2</td>
+<td headers="Opp" class="gt_row gt_left">SAS</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">3</td>
+<td headers="Opp" class="gt_row gt_left">CLE</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">4</td>
+<td headers="Opp" class="gt_row gt_left">UTA</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">9</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">5</td>
+<td headers="Opp" class="gt_row gt_left">DAL</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">9</td>
+<td headers="FG" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">6</td>
+<td headers="Opp" class="gt_row gt_left">MIN</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">23</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">7</td>
+<td headers="Opp" class="gt_row gt_left">MEM</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">8</td>
+<td headers="Opp" class="gt_row gt_left">MEM</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">20</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">9</td>
+<td headers="Opp" class="gt_row gt_left">HOU</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">10</td>
+<td headers="Opp" class="gt_row gt_left">MIA</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">11</td>
+<td headers="Opp" class="gt_row gt_left">IND</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">12</td>
+<td headers="Opp" class="gt_row gt_left">ATL</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">22</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">13</td>
+<td headers="Opp" class="gt_row gt_left">POR</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">14</td>
+<td headers="Opp" class="gt_row gt_left">DAL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">26</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">15</td>
+<td headers="Opp" class="gt_row gt_left">PHI</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">16</td>
+<td headers="Opp" class="gt_row gt_left">CHI</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">17</td>
+<td headers="Opp" class="gt_row gt_left">PHO</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">18</td>
+<td headers="Opp" class="gt_row gt_left">POR</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">19</td>
+<td headers="Opp" class="gt_row gt_left">MIL</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">20</td>
+<td headers="Opp" class="gt_row gt_left">MIA</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">21</td>
+<td headers="Opp" class="gt_row gt_left">ORL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">22</td>
+<td headers="Opp" class="gt_row gt_left">NYK</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">23</td>
+<td headers="Opp" class="gt_row gt_left">CHI</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">24</td>
+<td headers="Opp" class="gt_row gt_left">NOP</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">23</td>
+<td headers="FG" class="gt_row gt_right">17</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">25</td>
+<td headers="Opp" class="gt_row gt_left">SAS</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">26</td>
+<td headers="Opp" class="gt_row gt_left">SAS</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">27</td>
+<td headers="Opp" class="gt_row gt_left">WAS</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">28</td>
+<td headers="Opp" class="gt_row gt_left">MIN</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">16</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">29</td>
+<td headers="Opp" class="gt_row gt_left">ATL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">12</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">30</td>
+<td headers="Opp" class="gt_row gt_left">OKC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">9</td>
+<td headers="FG" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">31</td>
+<td headers="Opp" class="gt_row gt_left">CHO</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">34</td>
+<td headers="FG" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">32</td>
+<td headers="Opp" class="gt_row gt_left">LAC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">33</td>
+<td headers="Opp" class="gt_row gt_left">GSW</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">34</td>
+<td headers="Opp" class="gt_row gt_left">HOU</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">12</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">35</td>
+<td headers="Opp" class="gt_row gt_left">DAL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">18</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">36</td>
+<td headers="Opp" class="gt_row gt_left">UTA</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">37</td>
+<td headers="Opp" class="gt_row gt_left">SAC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">20</td>
+<td headers="FG" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">38</td>
+<td headers="Opp" class="gt_row gt_left">OKC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">21</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">39</td>
+<td headers="Opp" class="gt_row gt_left">LAC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">40</td>
+<td headers="Opp" class="gt_row gt_left">POR</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">10</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">41</td>
+<td headers="Opp" class="gt_row gt_left">LAL</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">12</td>
+<td headers="FG" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">42</td>
+<td headers="Opp" class="gt_row gt_left">UTA</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">18</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">43</td>
+<td headers="Opp" class="gt_row gt_left">LAC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">25</td>
+<td headers="FG" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">44</td>
+<td headers="Opp" class="gt_row gt_left">MEM</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">16</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">45</td>
+<td headers="Opp" class="gt_row gt_left">DET</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">46</td>
+<td headers="Opp" class="gt_row gt_left">DET</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">20</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">47</td>
+<td headers="Opp" class="gt_row gt_left">BRK</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">13</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">48</td>
+<td headers="Opp" class="gt_row gt_left">NOP</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">11</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">49</td>
+<td headers="Opp" class="gt_row gt_left">MIL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">9</td>
+<td headers="FG" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">50</td>
+<td headers="Opp" class="gt_row gt_left">MIN</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">12</td>
+<td headers="FG" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">51</td>
+<td headers="Opp" class="gt_row gt_left">UTA</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">52</td>
+<td headers="Opp" class="gt_row gt_left">NOP</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">10</td>
+<td headers="FG" class="gt_row gt_right">7</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">53</td>
+<td headers="Opp" class="gt_row gt_left">BRK</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">54</td>
+<td headers="Opp" class="gt_row gt_left">NYK</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">55</td>
+<td headers="Opp" class="gt_row gt_left">BOS</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">20</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">56</td>
+<td headers="Opp" class="gt_row gt_left">TOR</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">16</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">57</td>
+<td headers="Opp" class="gt_row gt_left">ORL</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">26</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">58</td>
+<td headers="Opp" class="gt_row gt_left">GSW</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">59</td>
+<td headers="Opp" class="gt_row gt_left">SAC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">60</td>
+<td headers="Opp" class="gt_row gt_left">SAC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">16</td>
+<td headers="FG" class="gt_row gt_right">6</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">61</td>
+<td headers="Opp" class="gt_row gt_left">POR</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">5</td>
+<td headers="FG" class="gt_row gt_right">3</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">62</td>
+<td headers="Opp" class="gt_row gt_left">OKC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">63</td>
+<td headers="Opp" class="gt_row gt_left">HOU</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">NA</td>
+<td headers="FG" class="gt_row gt_right">NA</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">64</td>
+<td headers="Opp" class="gt_row gt_left">NOP</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">22</td>
+<td headers="FG" class="gt_row gt_right">16</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">65</td>
+<td headers="Opp" class="gt_row gt_left">GSW</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">12</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">66</td>
+<td headers="Opp" class="gt_row gt_left">SAC</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">67</td>
+<td headers="Opp" class="gt_row gt_left">GSW</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">21</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">68</td>
+<td headers="Opp" class="gt_row gt_left">TOR</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">13</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">69</td>
+<td headers="Opp" class="gt_row gt_left">PHI</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">16</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">70</td>
+<td headers="Opp" class="gt_row gt_left">WAS</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">14</td>
+<td headers="FG" class="gt_row gt_right">10</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">71</td>
+<td headers="Opp" class="gt_row gt_left">CLE</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">72</td>
+<td headers="Opp" class="gt_row gt_left">BOS</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">23</td>
+<td headers="FG" class="gt_row gt_right">8</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">73</td>
+<td headers="Opp" class="gt_row gt_left">LAC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">74</td>
+<td headers="Opp" class="gt_row gt_left">PHO</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">10</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">75</td>
+<td headers="Opp" class="gt_row gt_left">OKC</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">15</td>
+<td headers="FG" class="gt_row gt_right">13</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">76</td>
+<td headers="Opp" class="gt_row gt_left">CHO</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">17</td>
+<td headers="FG" class="gt_row gt_right">9</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">77</td>
+<td headers="Opp" class="gt_row gt_left">IND</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">19</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">78</td>
+<td headers="Opp" class="gt_row gt_left">MIN</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">21</td>
+<td headers="FG" class="gt_row gt_right">14</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">79</td>
+<td headers="Opp" class="gt_row gt_left">LAL</td>
+<td headers="...6" class="gt_row gt_left">@</td>
+<td headers="FGA" class="gt_row gt_right">22</td>
+<td headers="FG" class="gt_row gt_right">15</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">80</td>
+<td headers="Opp" class="gt_row gt_left">SAS</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">35</td>
+<td headers="FG" class="gt_row gt_right">18</td></tr>
+    <tr><td headers="Rk" class="gt_row gt_right">81</td>
+<td headers="Opp" class="gt_row gt_left">MEM</td>
+<td headers="...6" class="gt_row gt_left">NA</td>
+<td headers="FGA" class="gt_row gt_right">24</td>
+<td headers="FG" class="gt_row gt_right">16</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="5"><strong>By:</strong> Wyatt Steffes  |  <strong>Source:</strong> https://www.basketball-reference.com/players/j/jokicni01/gamelog/2022</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+</div>
+</div>
+<p>It seems he’s the same great shooter anywhere he goes. No matter the altitude, the Joker will find a way to the basket. While the mile high marketing tactic looks great on paper, it seems to have very little effect on those who travel to Denver to play. Despite that, it’s still a great way to intimidate any opponent coming to the mile high city.</p>
 
 
 
